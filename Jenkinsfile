@@ -2,12 +2,19 @@ pipeline {
   agent any
   stages {
     stage('Approve') {
-      steps {
-        sh 'echo \'Approval\''
-        timestamps() {
-          echo 'Within loop'
+      parallel {
+        stage('Approve') {
+          steps {
+            sh 'echo \'Approval\''
+            timestamps()
+            timeout(time: 2, activity: true)
+          }
         }
-
+        stage('Manager Approve') {
+          steps {
+            echo 'Manager Approval'
+          }
+        }
       }
     }
     stage('QA') {
