@@ -6,7 +6,10 @@ pipeline {
         stage('Approve') {
           steps {
             sh 'echo \'Approval\''
-            timestamps()
+            timestamps() {
+              echo 'Within Timestamp'
+            }
+
             timeout(time: 2, activity: true)
           }
         }
