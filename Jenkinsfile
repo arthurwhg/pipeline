@@ -10,7 +10,10 @@ pipeline {
               echo 'Within Timestamp'
             }
 
-            timeout(time: 2, activity: true)
+            timeout(time: 2, activity: true) {
+              sleep 5
+            }
+
           }
         }
         stage('Manager Approve') {
