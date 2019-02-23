@@ -4,6 +4,10 @@ pipeline {
     stage('Approve') {
       steps {
         sh 'echo \'Approval\''
+        timestamps() {
+          echo 'Within loop'
+        }
+
       }
     }
     stage('QA') {
