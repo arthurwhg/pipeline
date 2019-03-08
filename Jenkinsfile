@@ -58,8 +58,7 @@ pipeline {
             script {
               echo 'Get Transitions'
               response = jiraGetIssueTransitions idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
-              echo response.data.toString()
-	      echo response.data.transitions.toString()
+	      //echo response.data.transitions.toString()
 	      for (item in response.data.transitions) {	
 			echo item.name
 		}
@@ -68,7 +67,15 @@ pipeline {
     }
     stage('ATS') {
       steps {
-        sh 'echo "ATS"'
+        echo "ATS"
+            script {
+              echo 'Get Issue'
+              response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+              echo response.data.toString()
+              for (item in response.data) { 
+                        echo item.id + item.name
+                }
+            }
       }
     }
     stage('BTS') {
