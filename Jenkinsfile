@@ -28,7 +28,7 @@ pipeline {
               issuetype: [name: 'Task']]]
 
               //response = jiraNewIssue issue: testIssue
-	      def response = jiraGetIssue 'TESTSPARK-11'
+	      def response = jiraGetIssue [issue: [key: 'TESTSPARK-11']]
 	
               echo response.successful.toString()
               echo response.data.toString()
