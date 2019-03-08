@@ -46,7 +46,7 @@ pipeline {
               echo response.successful.toString()
               echo "Data" 
               //echo response.data.toString()
-	      //echo response.toString()
+	      echo response.toString()
             }
           }
         }
@@ -71,11 +71,13 @@ pipeline {
             script {
               echo 'Get Issue'
               response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
-              echo response.toString()
-              for (item in response.data.fields) { 
-			echo 'Show item'
-			echo item.toString()
-                        //echo item.id 
+              //echo response.toString()
+		echo response.data.fields.status.name
+		echo response.data.fields.priority.name
+              //for (item in response.data.fields) { 
+	      //		echo 'Show item'
+	      //		echo item.toString()
+              //		echo item.id 
                 }
             }
       }
