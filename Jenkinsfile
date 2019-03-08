@@ -29,7 +29,7 @@ pipeline {
 
               //response = jiraNewIssue issue: testIssue
    	      def readIssue = [fields: [[key: 'TESTSPARK-11']]]
-	      //response = jiraGetIssue issue: readIssue
+	      response = jiraGetIssue issue: readIssue
 	
               //echo response.successful.toString()
               //echo response.data.toString()
