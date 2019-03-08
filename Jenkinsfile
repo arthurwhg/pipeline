@@ -78,7 +78,7 @@ pipeline {
 	      //		echo 'Show item'
 	      //		echo item.toString()
               //		echo item.id 
-                }
+              //  }
             }
       }
     }
