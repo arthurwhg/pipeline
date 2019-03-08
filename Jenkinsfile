@@ -23,7 +23,7 @@ pipeline {
               project: [key: 'WBXCLDMGMT'],
               summary: 'New JIRA Created from Jenkins.',
               description: 'New JIRA Created from Jenkins.',
-              //customfield_1000: 'customValue',
+              customfield_1000: 'customValue',
               // id or name must present for issueType.
               issuetype: [name: 'Task']]]
 
@@ -38,8 +38,12 @@ pipeline {
         }
         stage('Manager Approve') {
           steps {
-            echo 'Manager Approval'
-            //jiraGetIssue 'TESTSPARK-11'
+            echo 'Get issue'
+            response jiraGetFields idOrKey 'WBXCLDMGMT-908', site: 'DEV'
+	    echo "result"
+            echo response.successful.toString()
+            echo "Data" 
+            echo response.data.toString()
           }
         }
       }
