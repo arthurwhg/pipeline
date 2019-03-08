@@ -74,7 +74,7 @@ pipeline {
               echo 'Get Issue'
               response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
               //echo response.toString()
-		echo response.data.fields.status.name
+		echo "Initiated status is " + response.data.fields.status.name
 		echo response.data.fields.priority.name
               //for (item in response.data.fields) { 
 	      //		echo 'Show item'
@@ -86,7 +86,23 @@ pipeline {
     }
     stage('BTS') {
       steps {
-        sh 'echo "BTS"'
+        echo "BTS"
+            script {
+              echo 'Wait for apporval'
+              response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+              //echo response.toString()
+                echo "Initiated status is " + response.data.fields.status.name
+                echo response.data.fields.priority.name
+              for ( ; response.data.fields.status.name != 'Done'; ) {
+		timeout(time: 2, activity: true) {
+              		sleep 30 
+            	 }
+
+                response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+                echo 'now status ' + response.data.fields.status.name
+              }
+            }
+
       }
     }
     stage('PROD') {
