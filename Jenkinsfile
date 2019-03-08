@@ -41,12 +41,11 @@ pipeline {
           steps {
 	    script {
               echo 'Get issue'
-              //def response = jiraGetFields idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
-	      def response = jiraGetIssueTransitions idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+              def response = jiraGetFields idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
 	      echo "result"
               echo response.successful.toString()
               echo "Data" 
-              echo response.data.transitions[1].toString()
+              //echo response.data.toString()
 	      //echo response.toString()
             }
           }
@@ -56,6 +55,13 @@ pipeline {
     stage('QA') {
       steps {
         echo 'Now QA'
+            script {
+              echo 'Get Transitions'
+              def response = jiraGetIssueTransitions idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+	      for (item in responses.data.transitions) {	
+			echo item.name
+		}
+            }
       }
     }
     stage('ATS') {
