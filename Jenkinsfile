@@ -22,7 +22,7 @@ pipeline {
               def testIssue = [fields: [ // id or key must present for project.
               project: [key: 'WBXCLDMGMT'],
               summary: 'New JIRA Created from Jenkins.',
-              description: 'New JIRA Created from Jenkins. Project name is ' + currentBuild.projectname + '. build ID is ' + currentBuild.id,
+              description: 'New JIRA Created from Jenkins. Project name is ' + currentBuild.projectName + '. build ID is ' + currentBuild.id,
               //customfield_1000: 'customValue',
               // id or name must present for issueType.
               issuetype: [name: 'Task']]]
