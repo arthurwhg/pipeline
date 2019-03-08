@@ -38,12 +38,14 @@ pipeline {
         }
         stage('Manager Approve') {
           steps {
-            echo 'Get issue'
-            response jiraGetFields idOrKey 'WBXCLDMGMT-908', site: 'DEV'
-	    echo "result"
-            echo response.successful.toString()
-            echo "Data" 
-            echo response.data.toString()
+	    script {
+              echo 'Get issue'
+              response jiraGetFields idOrKey 'WBXCLDMGMT-908', site: 'DEV'
+	      echo "result"
+              echo response.successful.toString()
+              echo "Data" 
+              echo response.data.toString()
+            }
           }
         }
       }
