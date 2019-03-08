@@ -71,7 +71,7 @@ pipeline {
             script {
               echo 'Get Issue'
               response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
-              echo response.data.toString()
+              echo response.toString()
               for (item in response.data) { 
 			echo 'Show id'
 			echo item.toString()
