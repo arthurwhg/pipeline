@@ -72,10 +72,10 @@ pipeline {
               echo 'Get Issue'
               response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
               echo response.toString()
-              for (item in response.data) { 
-			echo 'Show id'
+              for (item in response.data.fields) { 
+			echo 'Show item'
 			echo item.toString()
-                        echo item.id 
+                        //echo item.id 
                 }
             }
       }
