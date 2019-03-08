@@ -43,7 +43,7 @@ pipeline {
               echo 'Get issue'
               def response = jiraGetFields idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
 	      echo "result"
-              echo response.successful
+              echo response.successful.toString()
               echo "Data" 
               //echo response.data.toString()
               echo response.data.Resolution
