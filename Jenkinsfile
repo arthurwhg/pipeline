@@ -17,27 +17,29 @@ pipeline {
           }
         }
         stage('JIRA') {
-	  steps {
-	    script {
-	      def testIssue = [fields: [ // id or key must present for project.
-          	                       project: [key: 'WBXCLDMGMT'],
-                	               summary: 'New JIRA Created from Jenkins.',
-                        	       description: 'New JIRA Created from Jenkins.',
-                 	               //customfield_1000: 'customValue',
-                         	      // id or name must present for issueType.
-                            	       issuetype: [name: 'task']]]
+          steps {
+            script {
+              def testIssue = [fields: [ // id or key must present for project.
+              project: [key: 'WBXCLDMGMT'],
+              summary: 'New JIRA Created from Jenkins.',
+              description: 'New JIRA Created from Jenkins.',
+              //customfield_1000: 'customValue',
+              // id or name must present for issueType.
+              issuetype: [name: 'task']]]
 
-	      response = jiraNewIssue issue: testIssue
-	    
-	      echo response.successful.toString()
-	      echo response.data.toString()
-	    }
-	  }
+              response = jiraNewIssue issue: testIssue
+
+              echo response.successful.toString()
+              echo response.data.toString()
+            }
+
+            jiraGetIssue 'TESTSPARK-11'
+          }
         }
         stage('Manager Approve') {
           steps {
             echo 'Manager Approval'
-	  }
+          }
         }
       }
     }
