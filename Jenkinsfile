@@ -33,12 +33,12 @@ pipeline {
               echo response.data.toString()
             }
 
-            jiraGetIssue 'TESTSPARK-11'
           }
         }
         stage('Manager Approve') {
           steps {
             echo 'Manager Approval'
+            jiraGetIssue 'TESTSPARK-11'
           }
         }
       }
