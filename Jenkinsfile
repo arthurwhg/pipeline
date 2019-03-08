@@ -101,7 +101,7 @@ pipeline {
 		timeout(time: 2, activity: true) {
               		sleep 30 
             	 }
-                response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+                response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
                 //echo 'now status ' + response.data.fields.status.name
               }
             }
