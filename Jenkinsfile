@@ -22,7 +22,7 @@ pipeline {
               def testIssue = [fields: [ // id or key must present for project.
               project: [key: 'WBXCLDMGMT'],
               summary: 'New JIRA Created from Jenkins.',
-              description: 'New JIRA Created from Jenkins.',
+              description: 'New JIRA Created from Jenkins. Project name is ' + currentBuild.projectname + '. build ID is ' + currentBuild.id,
               //customfield_1000: 'customValue',
               // id or name must present for issueType.
               issuetype: [name: 'Task']]]
@@ -99,7 +99,7 @@ pipeline {
               for ( ; response.data.fields.status.name != 'Done'; ) {
 		// check every 30 seconds
 		timeout(time: 2, activity: true) {
-              		sleep 30 
+              		sleep 300 
             	 }
                 response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
                 //echo 'now status ' + response.data.fields.status.name
