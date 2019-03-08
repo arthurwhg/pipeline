@@ -27,8 +27,9 @@ pipeline {
               // id or name must present for issueType.
               issuetype: [name: 'Task']]]
 
-              response = jiraNewIssue issue: testIssue
-
+              //response = jiraNewIssue issue: testIssue
+	      response = jiraGetIssue 'TESTSPARK-11'
+	
               echo response.successful.toString()
               echo response.data.toString()
             }
