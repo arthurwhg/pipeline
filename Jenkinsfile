@@ -40,7 +40,7 @@ pipeline {
           steps {
 	    script {
               echo 'Get issue'
-              def response = jiraGetFields idOrKey 'WBXCLDMGMT-908', site: 'DEV'
+              def response = jiraGetFields idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
 	      echo "result"
               echo response.successful.toString()
               echo "Data" 
