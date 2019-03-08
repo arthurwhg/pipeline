@@ -44,9 +44,11 @@ pipeline {
               def response = jiraGetFields idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
 	      echo "result"
               echo response.successful.toString()
-              echo "Data" 
+              echo "Fields" 
               //echo response.data.toString()
-	      echo response.toString()
+	      for (item in response.data) {
+			echo item.id + '--' + item.name
+		}
             }
           }
         }
