@@ -32,7 +32,8 @@ pipeline {
 	
               //echo response.successful.toString()
               //echo response.data.toString()
-	      //echo response.data.key
+
+	      def issueKey = response.data.key
             }
 
           }
@@ -46,9 +47,11 @@ pipeline {
               echo response.successful.toString()
               echo "Fields" 
               //echo response.data.toString()
+              def fields = ''
 	      for (item in response.data) {
-			echo item.id + '--' + item.name
+		 fields = fields +  item.id + '--' + item.name + '\n'
 		}
+	      echo fields
             }
           }
         }
@@ -59,11 +62,13 @@ pipeline {
         echo 'Now QA'
             script {
               echo 'Get Transitions'
-              response = jiraGetIssueTransitions idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+              response = jiraGetIssueTransitions idOrKey: issueKey, site: 'DEV'
 	      //echo response.data.transitions.toString()
+	      def transitions = '@'
 	      for (item in response.data.transitions) {	
-			echo item.name
+		transitions = transitions + "->" + item.name
 		}
+	      echo transitions
             }
       }
     }
@@ -72,15 +77,10 @@ pipeline {
         echo "ATS"
             script {
               echo 'Get Issue'
-              response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+              response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
               //echo response.toString()
 		echo "Initiated status is " + response.data.fields.status.name
 		echo response.data.fields.priority.name
-              //for (item in response.data.fields) { 
-	      //		echo 'Show item'
-	      //		echo item.toString()
-              //		echo item.id 
-              //  }
             }
       }
     }
@@ -89,17 +89,18 @@ pipeline {
         echo "BTS"
             script {
               echo 'Wait for apporval'
-              response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
-              //echo response.toString()
+              response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
                 echo "Initiated status is " + response.data.fields.status.name
-                echo response.data.fields.priority.name
+                echo "Initiated priority is " + response.data.fields.priority.name
+
+		//check approval
               for ( ; response.data.fields.status.name != 'Done'; ) {
+		// check every 30 seconds
 		timeout(time: 2, activity: true) {
               		sleep 30 
             	 }
-
                 response = jiraGetIssue idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
-                echo 'now status ' + response.data.fields.status.name
+                //echo 'now status ' + response.data.fields.status.name
               }
             }
 
@@ -107,7 +108,7 @@ pipeline {
     }
     stage('PROD') {
       steps {
-        sh 'echo "PROD"'
+        echo "PROD"
       }
     }
   }
