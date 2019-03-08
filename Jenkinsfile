@@ -27,12 +27,12 @@ pipeline {
               // id or name must present for issueType.
               issuetype: [name: 'Task']]]
 
-              response = jiraNewIssue issue: testIssue, site: 'DEV'
+              //response = jiraNewIssue issue: testIssue, site: 'DEV'
 	      //response = jiraGetIssue idOrKey: 'TESTSPARK-11', site: 'DEV' 
 	
-              echo response.successful.toString()
-              echo response.data.toString()
-	      echo response.data.key
+              //echo response.successful.toString()
+              //echo response.data.toString()
+	      //echo response.data.key
             }
 
           }
@@ -41,13 +41,13 @@ pipeline {
           steps {
 	    script {
               echo 'Get issue'
-              def response = jiraGetFields idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+              //def response = jiraGetFields idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+	      def response = jiraGetGetIssueTransitions idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
 	      echo "result"
               echo response.successful.toString()
               echo "Data" 
-              //echo response.data.toString()
-              echo response.data.Resolution
-	      echo response.toString()
+              echo response.data.toString()
+	      //echo response.toString()
             }
           }
         }
