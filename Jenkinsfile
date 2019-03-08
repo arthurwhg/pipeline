@@ -32,6 +32,7 @@ pipeline {
 	
               echo response.successful.toString()
               echo response.data.toString()
+	      echo response.data.key
             }
 
           }
@@ -44,8 +45,9 @@ pipeline {
 	      echo "result"
               echo response.successful.toString()
               echo "Data" 
-              echo response.data.toString()
+              //echo response.data.toString()
               echo response.data.Status.toString()
+	      echo response.toString()
             }
           }
         }
