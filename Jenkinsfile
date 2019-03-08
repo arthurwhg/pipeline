@@ -32,7 +32,7 @@ pipeline {
               //echo response.successful.toString()
               //echo response.data.toString()
 
-	      currentBuild.result = response.data.key
+	      currentBuild.description = response.data.key
             }
 
           }
@@ -60,7 +60,7 @@ pipeline {
       steps {
         echo 'Now QA'
             script {
-              def issueKey = currentBuild.result
+              def issueKey = currentBuild.description
               echo 'Get Transitions ' + issueKey + '!'
               response = jiraGetIssueTransitions idOrKey: issueKey, site: 'DEV'
 	      //echo response.data.transitions.toString()
@@ -76,7 +76,7 @@ pipeline {
       steps {
         echo "ATS"
             script {
-              def issueKey = currentBuild.result
+              def issueKey = currentBuild.description
               echo 'Get Issue'
               response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
               //echo response.toString()
@@ -89,7 +89,7 @@ pipeline {
       steps {
         echo "BTS"
             script {
-              def issueKey = currentBuild.result
+              def issueKey = currentBuild.description
               echo 'Wait for apporval'
               response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
                 echo "Initiated status is " + response.data.fields.status.name
