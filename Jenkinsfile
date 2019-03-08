@@ -57,8 +57,10 @@ pipeline {
         echo 'Now QA'
             script {
               echo 'Get Transitions'
-              def response = jiraGetIssueTransitions idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
-	      for (item in responses.data.transitions) {	
+              response = jiraGetIssueTransitions idOrKey: 'WBXCLDMGMT-908', site: 'DEV'
+              echo response.data.toString()
+	      echo response.data.transitions.toString()
+	      for (item in response.data.transitions) {	
 			echo item.name
 		}
             }
