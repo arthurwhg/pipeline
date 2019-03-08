@@ -29,7 +29,7 @@ pipeline {
 
               //response = jiraNewIssue issue: testIssue
    	      def readIssue = [fields: [[key: 'TESTSPARK-11']]]
-	      def response = jiraGetIssue issue: readIssue
+	      response = jiraGetIssue issue: readIssue
 	
               echo response.successful.toString()
               echo response.data.toString()
@@ -40,7 +40,7 @@ pipeline {
         stage('Manager Approve') {
           steps {
             echo 'Manager Approval'
-            jiraGetIssue 'TESTSPARK-11'
+            //jiraGetIssue 'TESTSPARK-11'
           }
         }
       }
