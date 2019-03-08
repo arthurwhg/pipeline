@@ -17,7 +17,7 @@ pipeline {
           }
         }
         stage('JIRA') {
-	  step {
+	  steps {
 	    def testIssue = [fields: [ // id or key must present for project.
         	                       project: [key: 'WBXCLDMGMT'],
                 	               summary: 'New JIRA Created from Jenkins.',
