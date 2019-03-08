@@ -16,9 +16,8 @@ pipeline {
 
           }
         }
-        stage('Manager Approve') {
+        stage('JIRA') {
           steps {
-            echo 'Manager Approval'
 	    def testIssue = [fields: [ // id or key must present for project.
         	                       project: [key: 'WBXCLDMGMT'],
                 	               summary: 'New JIRA Created from Jenkins.',
@@ -31,6 +30,11 @@ pipeline {
 
 	    echo response.successful.toString()
 	    echo response.data.toString()
+	  }
+        }
+        stage('Manager Approve') {
+          steps {
+            echo 'Manager Approval'
 	  }
         }
       }
