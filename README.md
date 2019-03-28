@@ -18,5 +18,5 @@ Sample code:
               // Site is the Jira Step configuration site name
               response = jiraNewIssue issue: testIssue, site: 'DEV'
 	
-              // Use global paramenter to pass the issue key to be used in the next steps
-	            currentBuild.description = response.data.key
+              // Use global paramenter to save the issue key to be used in the next steps
+	      currentBuild.description = response.data.key
