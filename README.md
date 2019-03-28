@@ -6,8 +6,9 @@ It is a sample pipeline. When timeout, the pipeline continue the next step and f
 
 The possible way is to use webhook to trigger a pipeline after status changed. 
 
+Sample code:
 
-Sample
+
               def testIssue = [fields: [      // id or key must present for project.
                 project: [key: 'WBXCLDMGMT'],
                 summary: 'New JIRA Created from Jenkins.',
