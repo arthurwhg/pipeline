@@ -99,10 +99,10 @@ pipeline {
               for ( ; response.data.fields.status.name != 'Done'; ) {
 		// check every 30 seconds
 		timeout(time: 2, activity: true) {
-              		sleep 300 
+                	response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
+                	echo 'now status ' + response.data.fields.status.name
+              		sleep 30 
             	 }
-                response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
-                echo 'now status ' + response.data.fields.status.name
               }
             }
 
