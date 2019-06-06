@@ -102,7 +102,7 @@ pipeline {
               		sleep 300 
             	 }
                 response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
-                //echo 'now status ' + response.data.fields.status.name
+                echo 'now status ' + response.data.fields.status.name
               }
             }
 
