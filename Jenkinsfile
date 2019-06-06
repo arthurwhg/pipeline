@@ -1,3 +1,4 @@
+                echo 'now status ' + response.data.fields.status.nam2
 pipeline {
   agent any
   stages {
@@ -99,10 +100,10 @@ pipeline {
               for ( ; response.data.fields.status.name != 'Done'; ) {
 		// check every 30 seconds
 		timeout(time: 2, activity: true) {
-                	response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
-                	echo 'now status ' + response.data.fields.status.name
               		sleep 30 
             	 }
+               	response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
+               	echo 'now status ' + response.data.fields.status.name
               }
             }
 
