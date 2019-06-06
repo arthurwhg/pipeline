@@ -96,10 +96,10 @@ pipeline {
                 echo "Initiated status is " + response.data.fields.status.name
                 echo "Initiated priority is " + response.data.fields.priority.name
 
-		//check approval
+	          	//check approval
               for ( ; response.data.fields.status.name != 'Done'; ) {
-		// check every 30 seconds
-		timeout(time: 2, activity: true) {
+		          // check every 30 seconds
+		              timeout(time: 2, activity: true) {
               		sleep 30 
             	 }
                	response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
