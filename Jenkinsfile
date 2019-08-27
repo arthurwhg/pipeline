@@ -98,8 +98,8 @@ pipeline {
 	      //check approval
               for ( ; response.data.fields.status.name != 'Done'; ) {
 	         	// check every 30 seconds
-	         	timeout(time: 2000, activity: true) {
-              		sh 'sleep 300' 
+	         	timeout(time: 200, activity: true) {
+              		sh 'sleep 30' 
             	 }
                	response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
                	echo 'now status ' + response.data.fields.status.name
