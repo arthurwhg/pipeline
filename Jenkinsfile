@@ -1,4 +1,3 @@
-                echo 'now status ' + response.data.fields.status.nam2
 pipeline {
   agent any
   stages {
@@ -98,9 +97,9 @@ pipeline {
 
 	      //check approval
               for ( ; response.data.fields.status.name != 'Done'; ) {
-	         // check every 30 seconds
-	         timeout(time: 2, activity: true) {
-              		sleep 30 
+	         	// check every 30 seconds
+	         	timeout(time: 2000, activity: true) {
+              		sh 'sleep 300' 
             	 }
                	response = jiraGetIssue idOrKey: issueKey, site: 'DEV'
                	echo 'now status ' + response.data.fields.status.name
